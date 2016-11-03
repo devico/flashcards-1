@@ -1,0 +1,19 @@
+
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-striped">
+      <tr>
+        <th>Оригинальный текст</th>
+        <th>Перевод</th>
+        <th>Обновлено</th>
+      </tr>
+      <% @cards.each do |card| %>
+        <tr>
+          <td><%= card.original_text %></td>
+          <td><%= card.translated_text %></td>
+          <td><%= card.review_date.strftime('%d/%m/%Y') %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
