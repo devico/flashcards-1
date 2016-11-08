@@ -1,0 +1,14 @@
+<div class="alert alert-danger alert-dismissible" role="alert" id='warning_panel'>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<strong>Внимание!</strong> <%=@message%>
+</div>
+
+<script type="text/javascript">
+	$('#warning_panel').<%= @status %>()
+</script>
+
+<%= simple_form_for(:card, url: {action: @action}, :method => @switch, html: { class: 'form-inline' }) do |f| %>
+	<%= f.input :original_text, label: 'Оригинальный текст: ', required: false, error: 'Username is mandatory, please specify one' %>
+	<%= f.input :translated_text, label: 'Перевод: ', required: false %>
+	<%= f.button :submit, 'Сохранить карточку' %>
+<% end %>
