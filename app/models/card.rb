@@ -1,6 +1,6 @@
 class Card < ApplicationRecord
 
-  scope :time_came, lambda{ where("review_date >= ?", Date.today) }
+  scope :time_came, lambda { where("review_date >= ?", Date.today) }
   before_create :set_review_date
   
   def set_review_date
