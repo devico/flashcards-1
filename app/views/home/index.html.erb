@@ -1,3 +1,16 @@
-  <p style="font-size: 22px;">
-        Первый в мире удобный менеджер флеш-карточек. Именно так.
-      </p>
+<% flash.each do |key, value| %>
+	<div class='alert alert-<%= key %> alert-dimissible'>
+		<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+		<%= value %>
+	</div>
+<% end %>
+<div class="row">
+	<div class="col-md-4">
+ 		<h3><%= @card.translated_text%></h3>
+	</div>
+	<div class="col-md-4">
+	 	<h3>
+	 	<%= render 'form' %>
+	 	</h3>
+ 	</div>
+</div>

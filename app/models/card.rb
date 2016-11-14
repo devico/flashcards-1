@@ -1,6 +1,7 @@
 class Card < ApplicationRecord
 
-before_create :set_review_date
+  scope :time_came, lambda{ where("review_date >= ?", Date.today) }
+  before_create :set_review_date
   
   def set_review_date
     self.review_date = 3.days.since
@@ -13,7 +14,7 @@ before_create :set_review_date
     original = original_text.mb_chars.upcase
     translated = translated_text.mb_chars.upcase
     if original.casecmp(translated) == 0
-    errors.add(:original_text)
+      errors.add(:original_text)
     end
   end
 end
