@@ -1,19 +1,25 @@
 class HomeController < ApplicationController
+
 def index
-  card_base = Card.time_came
-  @card = card_base[rand(0...card_base.count - 1)]
+  @card = Card.review_date_earlier_or_equal.pick_rand
 end
+
 def check
-  @card = Card.find_by(id: params[:home][:id_code])
-  @users_choice = params[:home][:user_text]
-  if @card.original_text.strip == @users_choice.strip
-    @card.update(review_date: 3.days.since)
-    flash.now[:success] = 'Все верно! Для закрепления повторим через три дня'
-  else
-    flash.now[:danger] = 'Ошибка, неправильный перевод'
-  end
-  card_base = Card.time_came
-  @card = card_base[rand(0...card_base.count - 1)]
-  render 'index'
+
+card_check = Card.find_by(id: params[:home][:id_code])
+
+result = CheckTranslation.call(
+original: params[:home][:user_text],
+users: card_check.original_text,
+card: card_check)
+
+if result.success?
+  flash.now[:success] = 'Все верно! Для закрепления повторим через три дня'
+else
+  flash.now[:danger] = 'Ошибка, неправильный перевод'
+end
+
+@card = Card.review_date_earlier_or_equal.pick_rand
+render 'index' 
 end
 end
