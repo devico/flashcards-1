@@ -1,6 +1,7 @@
 class Card < ApplicationRecord
 
   scope :review_date_earlier_or_equal, lambda { where("review_date <= ?", Date.today) }
+  scope :random, -> {order('RANDOM()').limit(1) }
   before_create :set_review_date
 
   def self.pick_rand
