@@ -1,6 +1,12 @@
 class Card < ApplicationRecord
 
-before_create :set_review_date
+  scope :review_date_earlier_or_equal, lambda { where("review_date <= ?", Date.today) }
+  scope :random, -> {order('RANDOM()').limit(1) }
+  before_create :set_review_date
+
+  def self.pick_rand
+    order('RANDOM()').first
+  end
   
   def set_review_date
     self.review_date = 3.days.since
@@ -13,7 +19,7 @@ before_create :set_review_date
     original = original_text.mb_chars.upcase
     translated = translated_text.mb_chars.upcase
     if original.casecmp(translated) == 0
-    errors.add(:original_text)
+      errors.add(:original_text)
     end
   end
 end
