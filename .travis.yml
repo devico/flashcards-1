@@ -1,7 +1,9 @@
 language: ruby
 rvm:
+- 1.9.3
 - jruby
 - rbx-2
+script: "bundle exec rake test"
 services:
 - postgresql
 before_script:
