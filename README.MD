@@ -1,6 +1,6 @@
 # README
 
-https://travis-ci.org/APA092/flashcards.svg?branch=seventh-task
+<img src= 'https://travis-ci.org/APA092/flashcards.svg?branch=seventh-task'>
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
