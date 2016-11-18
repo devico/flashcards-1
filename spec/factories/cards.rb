@@ -1,4 +1,4 @@
 FactoryGirl.define do
- factory :card do
- end
+  factory :card do
+  end
 end
