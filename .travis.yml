@@ -6,7 +6,7 @@ bundler_args: --jobs=2
 script:
 script:
   - bundle exec rake db:setup
-  - bundle exec rspec
+  - bundle exec rspec --require 'rails_helper'
 cache: bundler
 services:
   - postgresql
