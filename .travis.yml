@@ -4,7 +4,7 @@ rvm:
 - jruby
 - rbx-2
 script: 
-- bundle exec rspec --require spec_helper --require rails_helper
+- bundle exec rspec --require rails_helper
 services:
 - postgresql
 before_script:
