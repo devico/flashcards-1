@@ -8,4 +8,9 @@ describe Card do
       expect(subject.review_date.strftime('%d-%m-%Y')).to eq(3.days.since.strftime('%d-%m-%Y'))
     end
   end
+  context 'before saved' do
+    it 'shall return false if texts are equal regardless registr' do
+      expect(Card.new(original_text: 'Test', translated_text: 'tEst')).not_to be_valid
+    end
+  end
 end
