@@ -1,4 +1,5 @@
 class Card < ApplicationRecord
+  belongs_to :user
 
   scope :review_date_earlier_or_equal, lambda { where("review_date <= ?", Date.today) }
   scope :random, -> {order('RANDOM()').limit(1) }
