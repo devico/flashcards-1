@@ -3,7 +3,8 @@ RSpec.feature "Translation check" do
   before do
     record_time = 3.days.ago
     Time.stub(:now) { record_time }
-    create(:card, original_text: 'Correct translation', translated_text: 'Text to check')
+    user = create(:user, email: 'user@rails.com', password: 'qwerty')
+    create(:card, original_text: 'Correct translation', translated_text: 'Text to check', user_id: user.id)
   end
   scenario "User inputs correct translation and checks the result" do
     visit "/"
