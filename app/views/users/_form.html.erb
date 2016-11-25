@@ -1,15 +1,6 @@
-<%= form_for @user do |f| %>
-	<div class = 'form-group'>
-	<%= f.label :email %>
-	<%= f.email_field :email, class: 'form-control', required: true %>
-	</div>
-	<div class = 'form-group'>
-	<%= f.label :password %>
-	<%= f.password_field :password, class: 'form-control', required: true %>
-	</div>
-	<div class = 'form-group'>
-	<%= f.label :password_confirmation %>
-	<%= f.password_field :password_confirmation, class: 'form-control', required: true %>
-	</div>
-	<%= f.submit 'Зарегистрироваться', class: 'btn btn-primary btn-lg' %>
+<%= simple_form_for(:user, url: {action: @action}, :method => @switch) do |f| %>
+	<%= f.input :email, label: 'Email:', required: false %>
+	<%= f.input :password, label: 'Пароль:', required: false %>
+	<%= f.input :password_confirmation, label: 'Подтвердите пароль:', required: false %>
+	<%= f.button :submit, 'Сохранить учетную запись!' %>
 <% end %>
