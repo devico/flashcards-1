@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
 
   def index
-    @cards = Card.all
+    @cards = Card.belongs_to_current_user(current_user)
   end
 
   def new
@@ -45,6 +45,6 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text)
+    params.require(:card).permit(:original_text, :translated_text, :user_id)
   end
 end

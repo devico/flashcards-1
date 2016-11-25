@@ -3,6 +3,7 @@
   <div class="col-md-6">
     <table class="table table-striped">
       <tr>
+        <th>Belongs</th>
         <th>Оригинальный текст</th>
         <th>Перевод</th>
         <th>Дата пересмотра</th>
@@ -11,6 +12,7 @@
       </tr>
       <% @cards.each do |card| %>
         <tr>
+          <td><%= card.user_id %></td>
           <td><%= card.original_text %></td>
           <td><%= card.translated_text %></td>
           <td><%= card.review_date.strftime('%d/%m/%Y') %></td>

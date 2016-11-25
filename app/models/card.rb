@@ -1,7 +1,7 @@
 class Card < ApplicationRecord
   belongs_to :user
-
   scope :review_date_earlier_or_equal, lambda { where("review_date <= ?", Date.today) }
+  scope :belongs_to_current_user, lambda {|current_user| where("user_id = ?", current_user.id) }
   scope :random, -> {order('RANDOM()').limit(1) }
   before_create :set_review_date
 

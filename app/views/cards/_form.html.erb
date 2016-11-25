@@ -8,7 +8,8 @@
 </script>
 
 <%= simple_form_for(:card, url: {action: @action}, :method => @switch, html: { class: 'form-inline' }) do |f| %>
-	<%= f.input :original_text, label: 'Оригинальный текст: ', required: false, error: 'Username is mandatory, please specify one' %>
+	<%= f.input :original_text, label: 'Оригинальный текст: ', required: false %>
 	<%= f.input :translated_text, label: 'Перевод: ', required: false %>
+	<%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }, label: 'ID: ', required: false %>
 	<%= f.button :submit, 'Сохранить карточку' %>
 <% end %>
