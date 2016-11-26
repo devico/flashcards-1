@@ -24,6 +24,7 @@
       <% else %>
         <li><%= link_to 'Регистрация', sign_up_path %></li>
         <li><%= link_to 'Войти', log_in_path %></li>
+        <li><%= link_to 'Login with facebook', auth_at_provider_path(:provider => :facebook) %></li>
       <% end %>  
       <% if current_user %>
         <li><%= link_to 'Редактировать учетную запись: '+ current_user.email, edit_user_path(current_user) %></li>
