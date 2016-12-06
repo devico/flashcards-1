@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+protect_from_forgery except: :create
 
   def index
     @cards = Card.belongs_to_current_user(current_user)
