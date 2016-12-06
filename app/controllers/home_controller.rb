@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @card = Card.random.first
+    @card = Card.review_date_earlier_or_equal.random.first
   end
 
   def check
