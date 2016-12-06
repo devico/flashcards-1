@@ -7,9 +7,11 @@
 	$('#warning_panel').<%= @status %>()
 </script>
 
-<%= simple_form_for(:card, url: {action: @action}, :method => @switch, html: { class: 'form-inline' }) do |f| %>
+<%= simple_form_for(:card, url: {action: @action}, :method => @switch, html: { multipart: true }) do |f| %>
 	<%= f.input :original_text, label: 'Оригинальный текст: ', required: false %>
 	<%= f.input :translated_text, label: 'Перевод: ', required: false %>
+	<%= f.input :image, as: :file, label: 'Выберите картинку: ', required: false %>
+	<%= f.input :remote_image_url, label: 'или введите URL картинки: ', required: false %>
 	<%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }, label: 'ID: ', required: false %>
 	<%= f.button :submit, 'Сохранить карточку' %>
 <% end %>

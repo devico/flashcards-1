@@ -1,4 +1,5 @@
 class Card < ApplicationRecord
+  mount_uploader :image, ImageUploader
   belongs_to :user
   scope :review_date_earlier_or_equal, lambda { where("review_date <= ?", Date.today) }
   scope :belongs_to_current_user, lambda {|current_user| where(user_id: current_user.id) }
