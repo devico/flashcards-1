@@ -1,0 +1,6 @@
+<%= simple_form_for(:user, url: {action: @action}, :method => @switch) do |f| %>
+	<%= f.input :email, label: 'Email:', required: false %>
+	<%= f.input :password, label: 'Пароль:', required: false %>
+	<%= f.input :password_confirmation, label: 'Подтвердите пароль:', required: false %>
+	<%= f.button :submit, 'Сохранить учетную запись!' %>
+<% end %>
