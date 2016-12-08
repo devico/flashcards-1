@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-striped">
+      <tr>
+        <th>Название колоды</th>
+        <th>Выбрана для показа</th>
+        <th>Удалить</th>
+        <th>Изменить</th>
+      </tr>
+      <% @decks.each do |deck| %>
+        <tr>
+          <td><%= deck.name %></td>
+          <td>FALSE</td>
+          <td><%= link_to 'Удалить', card_path(deck),
+              method: :delete,
+              data: { confirm: 'Уверены?' } %></td>
+          <td><%= link_to 'Изменить', edit_card_path(deck) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+class AddNameToDeck < ApplicationRecord
+end

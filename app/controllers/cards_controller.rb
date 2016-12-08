@@ -1,5 +1,4 @@
 class CardsController < ApplicationController
-protect_from_forgery except: :create
 
   def index
     @cards = Card.belongs_to_current_user(current_user)
@@ -7,6 +6,7 @@ protect_from_forgery except: :create
 
   def new
     @status = 'hide'
+    @decks = Deck.belongs_to_current_user(current_user)
   end
 
   def edit
@@ -46,6 +46,6 @@ protect_from_forgery except: :create
   private
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text, :user_id, :image, :remote_image_url)
+    params.require(:card).permit(:original_text, :translated_text, :user_id, :image, :remote_image_url, :deck_id)
   end
 end

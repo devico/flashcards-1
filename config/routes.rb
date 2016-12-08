@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   delete '/log_out', to: 'sessions#destroy', as: :log_out
   get 'sign_up', to: 'users#new', as: :sign_up
   resources :cards
+  resources :decks
   post 'home', to: 'home#check'
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback"

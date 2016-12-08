@@ -11,5 +11,6 @@ class User < ApplicationRecord
   end
 
   has_many :authentications, :dependent => :destroy
+  has_many :decks, :dependent => :destroy
   accepts_nested_attributes_for :authentications
 end

@@ -8,6 +8,7 @@
 </script>
 
 <%= simple_form_for(:card, url: {action: @action}, :method => @switch, html: { multipart: true }) do |f| %>
+	<%= f.input :deck_id,:collection => @decks,:label_method => :name,:value_method => :id,:label => "Выберите колоду" ,:include_blank => true, required: false %>
 	<%= f.input :original_text, label: 'Оригинальный текст: ', required: false %>
 	<%= f.input :translated_text, label: 'Перевод: ', required: false %>
 	<%= f.input :image, as: :file, label: 'Выберите картинку: ', required: false %>
