@@ -1,20 +1,29 @@
 <div class="row">
+  <div class="col-md-8">
+    <%= render 'form' %>
+  </div>
   <div class="col-md-6">
     <table class="table table-striped">
       <tr>
         <th>Название колоды</th>
         <th>Выбрана для показа</th>
         <th>Удалить</th>
-        <th>Изменить</th>
+        <th>Выбрать</th>
       </tr>
       <% @decks.each do |deck| %>
         <tr>
           <td><%= deck.name %></td>
-          <td>FALSE</td>
-          <td><%= link_to 'Удалить', card_path(deck),
+          <td><% if current_user.deck == deck.id %>
+                <% trigger = 'Активировано' %>
+              <% else %>
+                <% trigger = 'Не выбрано' %>
+              <% end %>
+              <%= trigger %>
+          </td>
+          <td><%= link_to 'Удалить', deck_path(deck),
               method: :delete,
               data: { confirm: 'Уверены?' } %></td>
-          <td><%= link_to 'Изменить', edit_card_path(deck) %></td>
+          <td><%= link_to 'Выбрать', activate_deck_path(deck, :user_id => current_user.id), method: :post %></td>
         </tr>
       <% end %>
     </table>

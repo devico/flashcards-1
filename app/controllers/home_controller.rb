@@ -1,6 +1,13 @@
 class HomeController < ApplicationController
   def index
-    @card = Card.review_date_earlier_or_equal.random.first
+    if Deck.exists?(id: current_user.deck)
+      deck = Deck.find(current_user.deck)
+      @status = 'Карточки из колоды ' + deck.name
+      @card = Card.from_active_deck(current_user).review_date_earlier_or_equal.random.first
+    else
+      @status = 'Колода не выбрана, показываем случайные карточки'
+      @card = Card.review_date_earlier_or_equal.random.first
+    end
   end
 
   def check

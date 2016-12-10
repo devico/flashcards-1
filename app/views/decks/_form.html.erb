@@ -1,0 +1,5 @@
+<%= simple_form_for(:deck, url: {action: 'create'}, method: :post, html: { class: 'form-inline' }) do |f| %>
+	<%= f.input :name, label: 'Название колоды: ', required: false %>
+	<%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }, label: 'ID: ', required: false %>
+	<%= f.button :submit, 'Создать колоду' %>
+<% end %>
