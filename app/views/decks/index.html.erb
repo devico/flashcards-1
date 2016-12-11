@@ -17,7 +17,7 @@
           <td><%= link_to 'Удалить', deck_path(deck),
               method: :delete,
               data: { confirm: 'Уверены?' } %></td>
-          <td><%= link_to 'Выбрать', activate_deck_path(deck, :user_id => current_user.id), method: :post %></td>
+          <td><%= link_to 'Выбрать', activate_deck_path(:deck_id => deck.id, :user_id => current_user.id), method: :post %></td>
         </tr>
       <% end %>
     </table>

@@ -8,7 +8,7 @@ class DecksController < ApplicationController
 
   def activate
     user = User.find(params[:user_id])
-    user.deck_id = params[:format]
+    user.deck_id = params[:deck_id]
     user.save(validate: false)
     redirect_to decks_path
   end
