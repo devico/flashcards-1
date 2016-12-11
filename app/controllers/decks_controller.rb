@@ -1,5 +1,6 @@
 class DecksController < ApplicationController
-  load_and_authorize_resource
+
+  load_and_authorize_resource :except => :create
 
   def index
     @decks = Deck.belongs_to_current_user(current_user)

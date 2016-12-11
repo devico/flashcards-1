@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
-  load_and_authorize_resource
+
+  load_and_authorize_resource :except => :create
 
   def index
     @cards = Card.belongs_to_current_user(current_user)
