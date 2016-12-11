@@ -13,13 +13,7 @@
       <% @decks.each do |deck| %>
         <tr>
           <td><%= deck.name %></td>
-          <td><% if current_user.deck == deck.id %>
-                <% trigger = 'Активировано' %>
-              <% else %>
-                <% trigger = 'Не выбрано' %>
-              <% end %>
-              <%= trigger %>
-          </td>
+          <td><%= (current_user.deck_id == deck.id) ? "Активировано" : "Не выбрано" %></td>
           <td><%= link_to 'Удалить', deck_path(deck),
               method: :delete,
               data: { confirm: 'Уверены?' } %></td>

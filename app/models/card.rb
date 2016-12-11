@@ -3,7 +3,7 @@ class Card < ApplicationRecord
   belongs_to :user
   belongs_to :deck
   scope :review_date_earlier_or_equal, lambda { where("review_date <= ?", Date.today) }
-  scope :from_active_deck, lambda {|current_user| where(deck_id: current_user.deck) }
+  scope :from_active_deck, lambda {|current_user| where(deck_id: current_user.deck_id) }
   scope :belongs_to_current_user, lambda {|current_user| where(user_id: current_user.id) }
   scope :random, -> {order('RANDOM()').limit(1) }
   before_create :set_review_date

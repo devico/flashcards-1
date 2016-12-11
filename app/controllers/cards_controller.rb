@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @cards = Card.belongs_to_current_user(current_user)
@@ -40,6 +41,10 @@ class CardsController < ApplicationController
   def destroy
     @card = Card.find(params[:id])
     @card.destroy
+    redirect_to cards_path
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
     redirect_to cards_path
   end
   

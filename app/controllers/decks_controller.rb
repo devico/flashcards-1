@@ -1,11 +1,13 @@
 class DecksController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @decks = Deck.belongs_to_current_user(current_user)
   end
 
   def activate
     user = User.find(params[:user_id])
-    user.deck = params[:format]
+    user.deck_id = params[:format]
     user.save(validate: false)
     redirect_to decks_path
   end
@@ -24,6 +26,10 @@ class DecksController < ApplicationController
   def destroy
     deck = Deck.find(params[:id])
     deck.destroy
+    redirect_to decks_path
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
     redirect_to decks_path
   end
   
