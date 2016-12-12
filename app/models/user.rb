@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :cards, dependent: :destroy
   has_many :decks, dependent: :destroy
+  belongs_to :deck
   authenticates_with_sorcery!
 
   validates :password, length: { minimum: 3 }
