@@ -8,11 +8,11 @@ gem 'pg'
 
 gem 'cancancan'
 
-gem 'fog-aws'
+gem 'fog', require: 'fog/aws'
+
+gem 'carrierwave'
 
 gem 'rmagick'
-
-gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
 gem 'figaro'
 
