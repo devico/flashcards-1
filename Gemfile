@@ -12,7 +12,7 @@ gem 'fog-aws'
 
 gem 'rmagick'
 
-gem 'carrierwave'
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
 gem 'figaro'
 
