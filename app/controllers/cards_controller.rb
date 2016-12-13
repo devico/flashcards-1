@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
-protect_from_forgery except: :create
+
+  load_and_authorize_resource :except => :create
 
   def index
     @cards = Card.belongs_to_current_user(current_user)
@@ -7,6 +8,7 @@ protect_from_forgery except: :create
 
   def new
     @status = 'hide'
+    @decks = Deck.belongs_to_current_user(current_user)
   end
 
   def edit
@@ -42,10 +44,14 @@ protect_from_forgery except: :create
     @card.destroy
     redirect_to cards_path
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to cards_path
+  end
   
   private
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text, :user_id, :image, :remote_image_url)
+    params.require(:card).permit(:original_text, :translated_text, :user_id, :image, :remote_image_url, :deck_id)
   end
 end

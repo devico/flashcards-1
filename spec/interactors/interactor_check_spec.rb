@@ -2,7 +2,8 @@ require 'rails_helper'
 describe CheckTranslation do 
   before do
     user = create(:user, email: 'user@rails.com', password: 'qwerty')
-    @test_card = FactoryGirl.create(:card, original_text: 'test', translated_text: 'test_translation', user_id: user.id)
+    deck = create(:deck, name: 'test', user_id: user.id)
+    @test_card = FactoryGirl.create(:card, original_text: 'test', translated_text: 'test_translation', user_id: user.id, deck_id: deck.id)
   end
   it 'if words equal notice shall return success message' do
     interactor = CheckTranslation.call(users: 'test', card_id: @test_card.id)

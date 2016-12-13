@@ -4,8 +4,17 @@ RSpec.feature "Translation check" do
     record_time = 3.days.ago
     Time.stub(:now) { record_time }
     @user = create(:user, email: 'user@rails.com', password: 'secret')
-    create(:card, original_text: 'Correct translation', translated_text: 'Text to check', user_id: @user.id)
+    @deck = create(:deck, name: 'testing', user_id: @user.id)
+    create(:card, original_text: 'Correct translation', translated_text: 'Text to check', user_id: @user.id, deck_id: @deck.id)
     login_user
+  end
+  scenario "User activates Deck and sees cards from it" do
+    visit "/"
+    expect(page).to have_text("случайные")
+    visit "/decks"
+    click_link "Выбрать"
+    visit "/"
+    expect(page).to have_text("testing")
   end
   scenario "User inputs correct translation and checks the result" do
     visit "/"
@@ -21,10 +30,11 @@ RSpec.feature "Translation check" do
   end
   scenario "User creates card and can see it card's list" do
     visit "/cards/new"
+    select 'testing', from: 'Выберите колоду'
     fill_in "Оригинальный текст:", with: 'My original text'
     fill_in "Перевод:", with: 'My translation'
     click_button "Сохранить карточку"
-    expect(page).to have_text(@user.id)
+    expect(page).to have_text(@deck.id)
     expect(page).to have_text('Удалить')
     expect(page).to have_text('My translation')
   end

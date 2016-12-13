@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :cards, dependent: :destroy
+  has_many :decks, dependent: :destroy
+  belongs_to :deck
   authenticates_with_sorcery!
 
   validates :password, length: { minimum: 3 }
@@ -10,6 +12,7 @@ class User < ApplicationRecord
     config.authentications_class = Authentication
   end
 
-  has_many :authentications, :dependent => :destroy
+  has_many :authentications, dependent: :destroy
+  has_many :decks, dependent: :destroy
   accepts_nested_attributes_for :authentications
 end
