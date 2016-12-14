@@ -1,11 +1,12 @@
 require "rails_helper"
+
 RSpec.feature "Translation check" do
   before(:each) do
     #record_time = 3.days.ago
     #Time.stub(:now) { record_time }
     @user = create(:user, email: 'user@rails.com', password: 'secret')
     @deck = create(:deck, name: 'testing', user_id: @user.id)
-    create(:card, original_text: 'Correct translation', translated_text: 'Text to check', user_id: @user.id, deck_id: @deck.id, review_date: Today)
+    create(:card, original_text: 'Correct translation', translated_text: 'Text to check', user_id: @user.id, deck_id: @deck.id, review_date: Date.today)
     login_user
   end
   scenario "User activates Deck and sees cards from it" do
