@@ -7,7 +7,7 @@ describe CheckTranslation do
   end
   it 'if words equal notice shall return success message' do
     interactor = CheckTranslation.call(users: 'test', card_id: @test_card.id)
-    expect(interactor.notice).to eq('Все верно! Для закрепления повторим через три дня')
+    expect(interactor.notice).to eq('Все верно!')
   end
   #it 'if words equal card shall be updated with new date' do
   #  interactor = CheckTranslation.call(users: 'test', card_id: @test_card.id)

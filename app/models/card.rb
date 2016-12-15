@@ -6,14 +6,16 @@ class Card < ApplicationRecord
   scope :from_active_deck, lambda {|current_user| where(deck_id: current_user.deck_id) }
   scope :belongs_to_current_user, lambda {|current_user| where(user_id: current_user.id) }
   scope :random, -> {order('RANDOM()').limit(1) }
-  before_create :set_review_date
+  before_create :set_review_date_counter
 
   def self.pick_rand
     order('RANDOM()').first
   end
   
-  def set_review_date
-    self.review_date = 3.days.since
+  def set_review_date_counter
+    self.review_date = Date.today
+    self.correct = 0
+    self.wrong = 0
   end
 
   validates :original_text, :translated_text, :deck_id, presence: true
