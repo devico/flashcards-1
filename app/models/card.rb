@@ -13,9 +13,7 @@ class Card < ApplicationRecord
   end
   
   def set_review_date
-    if :review_date.nil?
-      self.review_date = 3.days.since
-    end
+    self.review_date = 3.days.since
   end
 
   validates :original_text, :translated_text, :deck_id, presence: true
