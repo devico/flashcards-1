@@ -11,7 +11,5 @@ engines:
     enabled: true
   csslint:
     enabled: true
-  duplication:
-  	enabled: true
 exclude_paths:
   app/assets/**
