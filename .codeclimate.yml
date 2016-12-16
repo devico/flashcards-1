@@ -7,8 +7,6 @@ engines:
     enabled: true
   rubocop:
     enabled: true
-  brakeman:
-   	enabled: true
   eslint:
     enabled: true
   csslint:
