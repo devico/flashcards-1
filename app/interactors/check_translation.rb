@@ -24,7 +24,7 @@ class CheckTranslation
   end
   
   def correct_answer
-    if @users_score > 0
+    if @users_score.positive?
       mistype
     else
       @card_check.update(correct: @card_check.correct + 1, wrong: 0)
