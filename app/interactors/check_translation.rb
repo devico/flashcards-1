@@ -15,7 +15,7 @@ class CheckTranslation
     passing_score = 0.15
     size = @card_check.original_text.strip.size
     score = Levenshtein.distance(@card_check.original_text.strip, context.users.strip)
-    @users_score = score.to_f/size.to_f
+    @users_score = score.to_f / size.to_f
     @users_score <= passing_score
   end
   
