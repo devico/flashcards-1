@@ -12,7 +12,11 @@ class CheckTranslation
   end
   
   def card_check
-    Levenshtein.distance(@card_check.original_text.strip, context.users.strip) <= 1
+    passing_score = 0.15
+    size = @card_check.original_text.strip.size
+    score = Levenshtein.distance(@card_check.original_text.strip, context.users.strip)
+    @users_score = score.to_f/size.to_f
+    @users_score <= passing_score
   end
   
   def getting_card
@@ -20,13 +24,19 @@ class CheckTranslation
   end
   
   def correct_answer
-    @card_check.update(correct: @card_check.correct + 1, wrong: 0)
-    set_new_review
-    if Levenshtein.distance(@card_check.original_text.strip, context.users.strip) > 0
-      context.notice = 'Ответ принимаем, но ты опечатался: твой вариант: ' + context.users.strip + ' правильно: ' + @card_check.original_text.strip
+    if @users_score > 0
+      mistype
     else
+      @card_check.update(correct: @card_check.correct + 1, wrong: 0)
+      set_new_review
       context.notice = 'Все верно!'
     end
+  end
+  
+  def mistype
+    @card_check.update(correct: @card_check.correct + 1, wrong: 0)
+    set_new_review
+    context.notice = 'Ответ принимаем, но ты опечатался: твой вариант: ' + context.users.strip + ' правильно: ' + @card_check.original_text.strip
   end
   
   def incorrect_answer
