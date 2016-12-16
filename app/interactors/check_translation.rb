@@ -31,11 +31,11 @@ def incorrect_answer
     @card_check.update(correct: 0, wrong: 0)
     @card_check.update(review_date: Time.current)
   end
-  context.notice ='Ошибка, неправильный перевод'
+  context.notice = 'Ошибка, неправильный перевод'
 end
 
 def set_new_review
-  @card_check.update(review_date: 
+  @card_check.update(review_date:
     case @card_check.correct
       when 1 then 12.hours.since
       when 2 then 1.week.since
@@ -43,6 +43,6 @@ def set_new_review
       when 4 then 1.month.since
       else 1.year.since
     end
-  )
+    )
 end
 end
