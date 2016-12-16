@@ -13,7 +13,6 @@
 	<%= f.input :translated_text, label: 'Перевод: ', required: false %>
 	<%= f.input :image, as: :file, label: 'Выберите картинку: ', required: false %>
 	<%= f.input :remote_image_url, label: 'или введите URL картинки: ', required: false %>
-	<%= f.input :review_date, as: :date, label: 'Дата показа: ', required: false  %>
 	<%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }, label: 'ID: ', required: false %>
 	<%= f.button :submit, 'Сохранить карточку' %>
 <% end %>
