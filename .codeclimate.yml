@@ -1,0 +1,21 @@
+languages:
+  Ruby: true
+  JavaScript: false
+  PHP: false
+engines:
+  markdownlint:
+    enabled: true
+  rubocop:
+    enabled: true
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+ratings:
+  paths:
+  - app/**
+  - lib/**
+  - "**.rb"
+  - "**.go"
+exclude_paths:
+  app/assets/**
