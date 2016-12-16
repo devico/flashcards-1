@@ -11,5 +11,11 @@ engines:
     enabled: true
   csslint:
     enabled: true
+ratings:
+  paths:
+  - app/**
+  - lib/**
+  - "**.rb"
+  - "**.go"
 exclude_paths:
   app/assets/**
