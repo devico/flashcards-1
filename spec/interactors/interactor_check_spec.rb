@@ -17,14 +17,14 @@ describe CheckTranslation do
   it 'if words not equal 3 times date shall be reset' do
     CheckTranslation.call(users: 'test', card_id: @test_card.id)
     3.times do
-      CheckTranslation.call(users: 'test1', card_id: @test_card.id)
+      CheckTranslation.call(users: 'tester', card_id: @test_card.id)
     end
     card = Card.find_by(id: @test_card.id)
     expect(card.wrong).to eq(0)
     expect(card.review_date.strftime('%H-%d-%m-%Y')).to eq(Time.current.strftime('%H-%d-%m-%Y'))
   end
   it 'if words not equal notice shall return error message' do
-    interactor = CheckTranslation.call(users: 'test1', card_id: @test_card.id)
+    interactor = CheckTranslation.call(users: 'tester', card_id: @test_card.id)
     expect(interactor.notice).to eq('Ошибка, неправильный перевод')
   end
 end
