@@ -1,5 +1,6 @@
 class CheckTranslation
   include Interactor
+  require 'levenshtein'
   
   def call
     getting_card
@@ -11,7 +12,7 @@ class CheckTranslation
   end
   
   def card_check
-    @card_check.original_text.strip == context.users.strip
+    Levenshtein.distance(@card_check.original_text.strip, context.users.strip) <= 1
   end
   
   def getting_card
@@ -21,7 +22,11 @@ class CheckTranslation
   def correct_answer
     @card_check.update(correct: @card_check.correct + 1, wrong: 0)
     set_new_review
-    context.notice = 'Все верно!'
+    if Levenshtein.distance(@card_check.original_text.strip, context.users.strip) > 0
+      context.notice = 'Ответ принимаем, но ты опечатался: твой вариант: ' + context.users.strip + ' правильно: ' +  @card_check.original_text.strip
+    else
+      context.notice = 'Все верно!'
+    end
   end
   
   def incorrect_answer
